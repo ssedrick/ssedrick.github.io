@@ -25,7 +25,7 @@ function setUpPlayer() {
 function playNext() {
    progress.MaterialSlider.change(0);
    index++;
-   song.src = songlist[index] + audioFileType;
+   song.src = "http://ssedrick.github.io/arcane/songs/" + songlist[index] + audioFileType;
    song.play();
    isPlaying = true;
 }
