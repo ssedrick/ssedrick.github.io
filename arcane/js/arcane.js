@@ -2,7 +2,7 @@ var audioFileType = "";
 var isPlaying = false;
 var isPaused = false;
 var index = 0;
-var songlist = ["/home/perrin/Music/iris", "/home/perrin/Music/slide", "/home/perrin/Music/broadway", "/home/perrin/Music/black_ballon", "/home/perrin/Music/bullet_proof"];
+var songlist = ["ComicGameLoopMischief", "Frost_of_the_Mind", "OrchestralMix"];
 
 var play     = $('#play');
 var restart  = $('#previous');
@@ -37,7 +37,7 @@ $(document).ready( function() {
       e.preventDefault();
       if (!isPlaying) {
          if (!isPaused) {
-            song.src = songlist[index.toString()] + audioFileType;
+            song.src = "http://ssedrick.github.io/arcane/songs/" + songlist[index.toString()] + audioFileType;
          }
          song.play();
 
