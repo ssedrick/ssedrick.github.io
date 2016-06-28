@@ -19167,11 +19167,11 @@ var LoginForm = React.createClass({
 
    submitLogin: function (e) {
       e.preventDefault();
-      $.ajax({ url: "http://localhost/php/login.php", success: function (result) {
-            if (result == "Success") {
-               $('#welcome-modal').modal('hide');
-            }
-         } });
+      /*$.ajax({url: "http://localhost/php/login.php", success: function(result){
+         if (result == "Success") {*/
+      $('#welcome-modal').modal('hide');
+      /*}
+      }});*/
    },
 
    render: function () {
