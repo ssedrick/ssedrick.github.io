@@ -1,5 +1,5 @@
 var React = require('react');
-var Header = require('Header');
+var Header = require('./Header.jsx');
 
 var Site = React.createClase({
    render: function() {
