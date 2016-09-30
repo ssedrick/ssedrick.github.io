@@ -2,93 +2,93 @@
   "languages": [
     {
       "name": "C",
-      "icon": ""
+      "icon": "devicon-c-plain"
     },
     {
       "name": "C++",
-      "icon": ""
+      "icon": "devicon-cplusplus-plain"
     },
     {
       "name": "Android",
-      "icon": ""
+      "icon": "devicon-android-plain"
     },
     {
       "name": "JavaScript",
-      "icon": ""
+      "icon": "devicon-javascript-plain"
+    },
+    {
+      "name": "JQuery",
+      "icon": "devicon-jquery-plain"
     },
     {
       "name": "Java",
-      "icon": ""
+      "icon": "devicon-java-plain"
     },
     {
       "name": "ReactJS",
-      "icon": ""
+      "icon": "devicon-react-plain"
     },
     {
       "name": "HTML5",
-      "icon": ""
+      "icon": "devicon-html6-plain"
     },
     {
       "name": "CSS3",
-      "icon": ""
-    },
-    {
-      "name": "Java",
-      "icon": ""
+      "icon": "devicon-css3-plain"
     },
     {
       "name": "Python",
-      "icon": ""
+      "icon": "devicon-python-plain"
     },
     {
       "name": "MySQL",
-      "icon": ""
+      "icon": "devicon-mysql-plain"
     },
     {
       "name": "PHP",
-      "icon": ""
+      "icon": "devicon-php-plain"
     }
   ],
   "technologies": [
     {
       "name": "Windows",
-      "icon": ""
+      "icon": "devicon-windows-plain"
     },
     {
       "name": "Linux",
-      "icon": ""
+      "icon": "devicon-linux-plain"
     },
     {
       "name": "Git",
-      "icon": ""
+      "icon": "devicon-git-plain"
     },
     {
       "name": "Github",
-      "icon": ""
+      "icon": "devicon-github-plain"
     },
     {
-      "name": "SourceForge",
-      "icon": ""
+      "name": "Vault",
+      "icon": "devicon-icon-plain"
     },
     {
       "name": "Atom",
-      "icon": ""
+      "icon": "devicon-atom-plain"
     },
     {
       "name": "Android Studio",
-      "icon": ""
+      "icon": "devicon-androidstudio-plain"
     },
     {
       "name": "Emacs",
-      "icon": ""
+      "icon": "devicon-emacs-plain"
     },
     {
       "name": "Pycharm",
-      "icon": ""
+      "icon": "devicon-pycharm-plain"
     },
     {
       "name": "NodePackageManager",
-      "icon": ""
+      "icon": "devicon-npm-plain"
     }
   ]
 }

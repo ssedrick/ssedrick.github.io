@@ -1,8 +1,7 @@
 var Reflux = require('reflux');
 
 var Actions = Reflux.createActions([
-   "getLanguages",
-   "getTechnologies"
+   "getSkills"
 ]);
 
 module.exports = Actions;
