@@ -1,94 +1,118 @@
 {
-  "languages": [
-    {
-      "name": "C",
-      "icon": "devicon-c-plain"
-    },
-    {
-      "name": "C++",
-      "icon": "devicon-cplusplus-plain"
-    },
-    {
-      "name": "Android",
-      "icon": "devicon-android-plain"
-    },
-    {
-      "name": "JavaScript",
-      "icon": "devicon-javascript-plain"
-    },
-    {
-      "name": "JQuery",
-      "icon": "devicon-jquery-plain"
-    },
-    {
-      "name": "Java",
-      "icon": "devicon-java-plain"
-    },
-    {
-      "name": "ReactJS",
-      "icon": "devicon-react-plain"
-    },
-    {
-      "name": "HTML5",
-      "icon": "devicon-html6-plain"
-    },
-    {
-      "name": "CSS3",
-      "icon": "devicon-css3-plain"
-    },
-    {
-      "name": "Python",
-      "icon": "devicon-python-plain"
-    },
-    {
-      "name": "MySQL",
-      "icon": "devicon-mysql-plain"
-    },
-    {
-      "name": "PHP",
-      "icon": "devicon-php-plain"
-    }
-  ],
-  "technologies": [
-    {
-      "name": "Windows",
-      "icon": "devicon-windows-plain"
-    },
-    {
-      "name": "Linux",
-      "icon": "devicon-linux-plain"
-    },
-    {
-      "name": "Git",
-      "icon": "devicon-git-plain"
-    },
-    {
-      "name": "Github",
-      "icon": "devicon-github-plain"
-    },
-    {
-      "name": "Vault",
-      "icon": "devicon-icon-plain"
-    },
-    {
-      "name": "Atom",
-      "icon": "devicon-atom-plain"
-    },
-    {
-      "name": "Android Studio",
-      "icon": "devicon-androidstudio-plain"
-    },
-    {
-      "name": "Emacs",
-      "icon": "devicon-emacs-plain"
-    },
-    {
-      "name": "Pycharm",
-      "icon": "devicon-pycharm-plain"
-    },
-    {
-      "name": "NodePackageManager",
-      "icon": "devicon-npm-plain"
-    }
-  ]
+   "Data" : {
+     "languages": [
+       {
+          "id": 1,
+          "name": "C",
+          "icon": "devicon-c-plain"
+       },
+       {
+          "id": 2,
+          "name": "C++",
+          "icon": "devicon-cplusplus-plain"
+       },
+       {
+          "id": 3,
+          "name": "Android",
+          "icon": "devicon-android-plain"
+       },
+       {
+          "id": 4,
+          "name": "JavaScript",
+          "icon": "devicon-javascript-plain"
+       },
+       {
+          "id": 5,
+          "name": "JQuery",
+          "icon": "devicon-jquery-plain"
+       },
+       {
+          "id": 6,
+          "name": "Java",
+          "icon": "devicon-java-plain"
+       },
+       {
+          "id": 7,
+          "name": "ReactJS",
+          "icon": "devicon-react-original"
+       },
+       {
+          "id": 8,
+          "name": "HTML5",
+          "icon": "devicon-html5-plain"
+       },
+       {
+          "id": 9,
+          "name": "CSS3",
+          "icon": "devicon-css3-plain"
+       },
+       {
+          "id": 10,
+          "name": "Python",
+          "icon": "devicon-python-plain"
+       },
+       {
+          "id": 11,
+          "name": "MySQL",
+          "icon": "devicon-mysql-plain"
+       },
+       {
+          "id": 12,
+          "name": "PHP",
+          "icon": "devicon-php-plain"
+       }
+     ],
+     "technologies": [
+       {
+          "id": 1,
+          "name": "Windows",
+          "icon": "devicon-windows8-original"
+       },
+       {
+          "id": 2,
+          "name": "Linux",
+          "icon": "devicon-linux-plain"
+       },
+       {
+          "id": 3,
+          "name": "Git",
+          "icon": "devicon-git-plain"
+       },
+       {
+          "id": 4,
+          "name": "Github",
+          "icon": "devicon-github-plain"
+       },
+       {
+          "id": 5,
+          "name": "Vault",
+          "icon": "devicon-icon-plain"
+       },
+       {
+          "id": 6,
+          "name": "Atom",
+          "icon": "devicon-atom-original"
+       },
+       {
+          "id": 7,
+          "name": "Android Studio",
+          "icon": "devicon-androidstudio-plain"
+       },
+       {
+          "id": 8,
+          "name": "Emacs",
+          "icon": "devicon-emacs-plain"
+       },
+       {
+          "id": 9,
+          "name": "Pycharm",
+          "icon": "devicon-pycharm-plain"
+       },
+       {
+          "id": 10,
+          "name": "NodePackageManager",
+          "icon": "devicon-npm-plain"
+       }
+     ]
+  }
 }

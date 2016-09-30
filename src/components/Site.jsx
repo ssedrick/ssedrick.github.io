@@ -1,5 +1,5 @@
 var React = require('react');
-var Header = require('./Header.jsx');
+var PictureViewer = require('./PictureViewer.jsx');
 var VerticalMenu = require('./VerticalMenu.jsx');
 var HorizontalMenu = require('./HorizontalMenu.jsx');
 
@@ -10,7 +10,9 @@ var Site = React.createClass({
                <div className="mdl-layout mdl-js-layout">
                   <div className="row">
                      <div className="col-xs-12 col-sm-12 col-md-3 col-lg-3">
-                        <Header />
+                        <div className="view-window">
+                              <PictureViewer />
+                        </div>
                      </div>
                      <div className="col-xs-12 col-sm-12 hidden-md hidden-lg hidden-xl">
                         <HorizontalMenu />

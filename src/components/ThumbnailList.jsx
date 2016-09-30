@@ -3,10 +3,11 @@ var Thumbnail = require('./Thumbnail.jsx');
 
 var ThumbnailList = React.createClass({
    renderListItems: function() {
+      console.info(this.props);
       var items = [];
       for (var i = 0; i < this.props.listItems.length; i++) {
          var item = this.props.listItems[i];
-         items.push(<Thumbnail src={item.icon} />);
+         items.push(<Thumbnail key={item.id} src={item.icon} />);
       }
       return items;
    },

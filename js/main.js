@@ -25848,16 +25848,31 @@ module.exports = function (str) {
 },{}],240:[function(require,module,exports){
 arguments[4][48][0].apply(exports,arguments)
 },{"_process":51,"dup":48}],241:[function(require,module,exports){
-(function() {
+(function(self) {
   'use strict';
 
   if (self.fetch) {
     return
   }
 
+  var support = {
+    searchParams: 'URLSearchParams' in self,
+    iterable: 'Symbol' in self && 'iterator' in Symbol,
+    blob: 'FileReader' in self && 'Blob' in self && (function() {
+      try {
+        new Blob()
+        return true
+      } catch(e) {
+        return false
+      }
+    })(),
+    formData: 'FormData' in self,
+    arrayBuffer: 'ArrayBuffer' in self
+  }
+
   function normalizeName(name) {
     if (typeof name !== 'string') {
-      name = name.toString();
+      name = String(name)
     }
     if (/[^a-z0-9\-#$%&'*+.\^_`|~]/i.test(name)) {
       throw new TypeError('Invalid character in header field name')
@@ -25867,9 +25882,27 @@ arguments[4][48][0].apply(exports,arguments)
 
   function normalizeValue(value) {
     if (typeof value !== 'string') {
-      value = value.toString();
+      value = String(value)
     }
     return value
+  }
+
+  // Build a destructive iterator for the value list
+  function iteratorFor(items) {
+    var iterator = {
+      next: function() {
+        var value = items.shift()
+        return {done: value === undefined, value: value}
+      }
+    }
+
+    if (support.iterable) {
+      iterator[Symbol.iterator] = function() {
+        return iterator
+      }
+    }
+
+    return iterator
   }
 
   function Headers(headers) {
@@ -25927,6 +25960,28 @@ arguments[4][48][0].apply(exports,arguments)
     }, this)
   }
 
+  Headers.prototype.keys = function() {
+    var items = []
+    this.forEach(function(value, name) { items.push(name) })
+    return iteratorFor(items)
+  }
+
+  Headers.prototype.values = function() {
+    var items = []
+    this.forEach(function(value) { items.push(value) })
+    return iteratorFor(items)
+  }
+
+  Headers.prototype.entries = function() {
+    var items = []
+    this.forEach(function(value, name) { items.push([name, value]) })
+    return iteratorFor(items)
+  }
+
+  if (support.iterable) {
+    Headers.prototype[Symbol.iterator] = Headers.prototype.entries
+  }
+
   function consumed(body) {
     if (body.bodyUsed) {
       return Promise.reject(new TypeError('Already read'))
@@ -25957,21 +26012,8 @@ arguments[4][48][0].apply(exports,arguments)
     return fileReaderReady(reader)
   }
 
-  var support = {
-    blob: 'FileReader' in self && 'Blob' in self && (function() {
-      try {
-        new Blob();
-        return true
-      } catch(e) {
-        return false
-      }
-    })(),
-    formData: 'FormData' in self
-  }
-
   function Body() {
     this.bodyUsed = false
-
 
     this._initBody = function(body) {
       this._bodyInit = body
@@ -25981,10 +26023,25 @@ arguments[4][48][0].apply(exports,arguments)
         this._bodyBlob = body
       } else if (support.formData && FormData.prototype.isPrototypeOf(body)) {
         this._bodyFormData = body
+      } else if (support.searchParams && URLSearchParams.prototype.isPrototypeOf(body)) {
+        this._bodyText = body.toString()
       } else if (!body) {
         this._bodyText = ''
+      } else if (support.arrayBuffer && ArrayBuffer.prototype.isPrototypeOf(body)) {
+        // Only support ArrayBuffers for POST method.
+        // Receiving ArrayBuffers happens via Blobs, instead.
       } else {
         throw new Error('unsupported BodyInit type')
+      }
+
+      if (!this.headers.get('content-type')) {
+        if (typeof body === 'string') {
+          this.headers.set('content-type', 'text/plain;charset=UTF-8')
+        } else if (this._bodyBlob && this._bodyBlob.type) {
+          this.headers.set('content-type', this._bodyBlob.type)
+        } else if (support.searchParams && URLSearchParams.prototype.isPrototypeOf(body)) {
+          this.headers.set('content-type', 'application/x-www-form-urlencoded;charset=UTF-8')
+        }
       }
     }
 
@@ -26050,20 +26107,44 @@ arguments[4][48][0].apply(exports,arguments)
     return (methods.indexOf(upcased) > -1) ? upcased : method
   }
 
-  function Request(url, options) {
+  function Request(input, options) {
     options = options || {}
-    this.url = url
+    var body = options.body
+    if (Request.prototype.isPrototypeOf(input)) {
+      if (input.bodyUsed) {
+        throw new TypeError('Already read')
+      }
+      this.url = input.url
+      this.credentials = input.credentials
+      if (!options.headers) {
+        this.headers = new Headers(input.headers)
+      }
+      this.method = input.method
+      this.mode = input.mode
+      if (!body) {
+        body = input._bodyInit
+        input.bodyUsed = true
+      }
+    } else {
+      this.url = input
+    }
 
-    this.credentials = options.credentials || 'omit'
-    this.headers = new Headers(options.headers)
-    this.method = normalizeMethod(options.method || 'GET')
-    this.mode = options.mode || null
+    this.credentials = options.credentials || this.credentials || 'omit'
+    if (options.headers || !this.headers) {
+      this.headers = new Headers(options.headers)
+    }
+    this.method = normalizeMethod(options.method || this.method || 'GET')
+    this.mode = options.mode || this.mode || null
     this.referrer = null
 
-    if ((this.method === 'GET' || this.method === 'HEAD') && options.body) {
+    if ((this.method === 'GET' || this.method === 'HEAD') && body) {
       throw new TypeError('Body not allowed for GET or HEAD requests')
     }
-    this._initBody(options.body)
+    this._initBody(body)
+  }
+
+  Request.prototype.clone = function() {
+    return new Request(this)
   }
 
   function decode(body) {
@@ -26081,7 +26162,7 @@ arguments[4][48][0].apply(exports,arguments)
 
   function headers(xhr) {
     var head = new Headers()
-    var pairs = xhr.getAllResponseHeaders().trim().split('\n')
+    var pairs = (xhr.getAllResponseHeaders() || '').trim().split('\n')
     pairs.forEach(function(header) {
       var split = header.trim().split(':')
       var key = split.shift().trim()
@@ -26098,32 +26179,55 @@ arguments[4][48][0].apply(exports,arguments)
       options = {}
     }
 
-    this._initBody(bodyInit)
     this.type = 'default'
-    this.url = null
     this.status = options.status
     this.ok = this.status >= 200 && this.status < 300
     this.statusText = options.statusText
     this.headers = options.headers instanceof Headers ? options.headers : new Headers(options.headers)
     this.url = options.url || ''
+    this._initBody(bodyInit)
   }
 
   Body.call(Response.prototype)
 
-  self.Headers = Headers;
-  self.Request = Request;
-  self.Response = Response;
+  Response.prototype.clone = function() {
+    return new Response(this._bodyInit, {
+      status: this.status,
+      statusText: this.statusText,
+      headers: new Headers(this.headers),
+      url: this.url
+    })
+  }
 
-  self.fetch = function(input, init) {
-    // TODO: Request constructor should accept input, init
-    var request
-    if (Request.prototype.isPrototypeOf(input) && !init) {
-      request = input
-    } else {
-      request = new Request(input, init)
+  Response.error = function() {
+    var response = new Response(null, {status: 0, statusText: ''})
+    response.type = 'error'
+    return response
+  }
+
+  var redirectStatuses = [301, 302, 303, 307, 308]
+
+  Response.redirect = function(url, status) {
+    if (redirectStatuses.indexOf(status) === -1) {
+      throw new RangeError('Invalid status code')
     }
 
+    return new Response(null, {status: status, headers: {location: url}})
+  }
+
+  self.Headers = Headers
+  self.Request = Request
+  self.Response = Response
+
+  self.fetch = function(input, init) {
     return new Promise(function(resolve, reject) {
+      var request
+      if (Request.prototype.isPrototypeOf(input) && !init) {
+        request = input
+      } else {
+        request = new Request(input, init)
+      }
+
       var xhr = new XMLHttpRequest()
 
       function responseURL() {
@@ -26136,26 +26240,25 @@ arguments[4][48][0].apply(exports,arguments)
           return xhr.getResponseHeader('X-Request-URL')
         }
 
-        return;
+        return
       }
 
       xhr.onload = function() {
-        var status = (xhr.status === 1223) ? 204 : xhr.status
-        if (status < 100 || status > 599) {
-          reject(new TypeError('Network request failed'))
-          return
-        }
         var options = {
-          status: status,
+          status: xhr.status,
           statusText: xhr.statusText,
           headers: headers(xhr),
           url: responseURL()
         }
-        var body = 'response' in xhr ? xhr.response : xhr.responseText;
+        var body = 'response' in xhr ? xhr.response : xhr.responseText
         resolve(new Response(body, options))
       }
 
       xhr.onerror = function() {
+        reject(new TypeError('Network request failed'))
+      }
+
+      xhr.ontimeout = function() {
         reject(new TypeError('Network request failed'))
       }
 
@@ -26177,13 +26280,13 @@ arguments[4][48][0].apply(exports,arguments)
     })
   }
   self.fetch.polyfill = true
-})();
+})(typeof self !== 'undefined' ? self : this);
 
 },{}],242:[function(require,module,exports){
 var React = require('react');
 var Router = require('react-router').Router;
 var Route = require('react-router').Route;
-var browserHistory = require('react-router').browserHistory;
+var hashHistory = require('react-router').hashHistory;
 
 var Site = require('./components/Site.jsx');
 var Home = require('./components/Home.jsx');
@@ -26192,20 +26295,20 @@ var About = require('./components/About.jsx');
 
 var Routes = React.createElement(
    Router,
-   { history: browserHistory },
+   { history: hashHistory },
    React.createElement(
       Route,
       { path: '/', component: Site },
       React.createElement(Route, { path: '/home', component: Home }),
       React.createElement(Route, { path: '/skills', component: Skills }),
       React.createElement(Route, { path: '/about', component: About }),
-      React.createElement(Route, { path: '*', component: Home })
+      React.createElement(Route, { path: '/*', component: Home })
    )
 );
 
 module.exports = Routes;
 
-},{"./components/About.jsx":243,"./components/Home.jsx":245,"./components/Site.jsx":247,"./components/Skills.jsx":248,"react":220,"react-router":83}],243:[function(require,module,exports){
+},{"./components/About.jsx":243,"./components/Home.jsx":244,"./components/Site.jsx":247,"./components/Skills.jsx":248,"react":220,"react-router":83}],243:[function(require,module,exports){
 var React = require('react');
 
 var About = React.createClass({
@@ -26229,27 +26332,6 @@ module.exports = About;
 },{"react":220}],244:[function(require,module,exports){
 var React = require('react');
 
-var Header = React.createClass({
-   displayName: 'Header',
-
-   render: function () {
-      return React.createElement(
-         'div',
-         null,
-         React.createElement(
-            'h2',
-            null,
-            'Header!'
-         )
-      );
-   }
-});
-
-module.exports = Header;
-
-},{"react":220}],245:[function(require,module,exports){
-var React = require('react');
-
 var Home = React.createClass({
    displayName: 'Home',
 
@@ -26268,7 +26350,7 @@ var Home = React.createClass({
 
 module.exports = Home;
 
-},{"react":220}],246:[function(require,module,exports){
+},{"react":220}],245:[function(require,module,exports){
 var React = require('react');
 var Link = require('react-router').Link;
 
@@ -26346,9 +26428,30 @@ var HorizontalMenu = React.createClass({
 
 module.exports = HorizontalMenu;
 
-},{"react":220,"react-router":83}],247:[function(require,module,exports){
+},{"react":220,"react-router":83}],246:[function(require,module,exports){
 var React = require('react');
-var Header = require('./Header.jsx');
+
+var PictureViewer = React.createClass({
+   displayName: 'PictureViewer',
+
+   render: function () {
+      return React.createElement(
+         'div',
+         null,
+         React.createElement(
+            'h2',
+            null,
+            'Header!'
+         )
+      );
+   }
+});
+
+module.exports = PictureViewer;
+
+},{"react":220}],247:[function(require,module,exports){
+var React = require('react');
+var PictureViewer = require('./PictureViewer.jsx');
 var VerticalMenu = require('./VerticalMenu.jsx');
 var HorizontalMenu = require('./HorizontalMenu.jsx');
 
@@ -26368,7 +26471,11 @@ var Site = React.createClass({
                React.createElement(
                   'div',
                   { className: 'col-xs-12 col-sm-12 col-md-3 col-lg-3' },
-                  React.createElement(Header, null)
+                  React.createElement(
+                     'div',
+                     { className: 'view-window' },
+                     React.createElement(PictureViewer, null)
+                  )
                ),
                React.createElement(
                   'div',
@@ -26407,7 +26514,7 @@ var Site = React.createClass({
 
 module.exports = Site;
 
-},{"./Header.jsx":244,"./HorizontalMenu.jsx":246,"./VerticalMenu.jsx":251,"react":220}],248:[function(require,module,exports){
+},{"./HorizontalMenu.jsx":245,"./PictureViewer.jsx":246,"./VerticalMenu.jsx":251,"react":220}],248:[function(require,module,exports){
 var React = require('react');
 var Reflux = require('reflux');
 var Actions = require('../reflux/actions.jsx');
@@ -26428,11 +26535,11 @@ var Skills = React.createClass({
    componentWillMount: function () {
       Actions.getSkills();
    },
-   onChange: function (event, languages, technologies) {
-      console.info("Updating Skills state");
+   onChange: function (event, store) {
+      console.info("Changing state", store);
       this.setState({
-         languageList: languages,
-         technologyList: technologies
+         languageList: store.languages,
+         technologyList: store.technologies
       });
    },
    render: function () {
@@ -26447,12 +26554,12 @@ var Skills = React.createClass({
          React.createElement(
             'div',
             null,
-            React.createElement(ThumbnailList, { listItems: this.state.languages })
+            React.createElement(ThumbnailList, { listItems: this.state.languageList })
          ),
          React.createElement(
             'div',
             null,
-            React.createElement(ThumbnailList, { listItems: this.state.technologies })
+            React.createElement(ThumbnailList, { listItems: this.state.technologyList })
          )
       );
    }
@@ -26467,11 +26574,7 @@ var Thumbnail = React.createClass({
    displayName: "Thumbnail",
 
    render: function () {
-      return React.createElement(
-         "a",
-         { href: true, className: "square thumbnail" },
-         React.createElement("i", { "class": this.props.src + " colored" })
-      );
+      return React.createElement("i", { className: this.props.src + " colored square" });
    }
 });
 
@@ -26485,10 +26588,11 @@ var ThumbnailList = React.createClass({
    displayName: 'ThumbnailList',
 
    renderListItems: function () {
+      console.info(this.props);
       var items = [];
       for (var i = 0; i < this.props.listItems.length; i++) {
          var item = this.props.listItems[i];
-         items.push(React.createElement(Thumbnail, { src: item.icon }));
+         items.push(React.createElement(Thumbnail, { key: item.id, src: item.icon }));
       }
       return items;
    },
@@ -26602,13 +26706,14 @@ var SkillsStore = Reflux.createStore({
    listenables: [Actions],
    getSkills: function () {
       HTTP.get('data/skills.json').then(function (response) {
-         this.languages = response.languages;
-         this.technologies = response.technologies;
-         this.fireUpdate();
+         console.info("Response", response);
+         this.data = response.Data;
+         console.info("Store data", this.data);
+         this.updateSkills();
       }.bind(this));
    },
-   fireUpdate: function () {
-      this.trigger('change', this.languages, this.technologies);
+   updateSkills: function () {
+      this.trigger('change', this.data);
    }
 });
 
@@ -26625,5 +26730,7 @@ var service = {
       });
    }
 };
+
+module.exports = service;
 
 },{"whatwg-fetch":241}]},{},[252]);

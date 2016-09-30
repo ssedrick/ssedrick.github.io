@@ -16,11 +16,11 @@ var Skills = React.createClass({
    componentWillMount: function() {
       Actions.getSkills();
    },
-   onChange: function(event, languages, technologies) {
-      console.info("Updating Skills state");
+   onChange: function(event, store) {
+      console.info("Changing state", store);
       this.setState({
-         languageList: languages,
-         technologyList: technologies
+         languageList: store.languages,
+         technologyList: store.technologies
       });
    },
    render: function() {
@@ -28,10 +28,10 @@ var Skills = React.createClass({
          <div>
             <h2>Skills</h2>
             <div >
-               <ThumbnailList listItems={this.state.languages} />
+               <ThumbnailList listItems={this.state.languageList} />
             </div>
             <div >
-               <ThumbnailList listItems={this.state.technologies} />
+               <ThumbnailList listItems={this.state.technologyList} />
             </div>
          </div>
       );
