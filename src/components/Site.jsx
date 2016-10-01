@@ -9,30 +9,24 @@ var Site = React.createClass({
             <div className="mdl-layout__container">
                <div className="mdl-layout mdl-js-layout">
                   <div className="row">
-                     <div className="col-xs-12 col-sm-12 col-md-3 col-lg-3">
-                        <div className="view-window">
-                              <PictureViewer />
-                        </div>
+                     <div className="left-view-port view-port">
+                        <PictureViewer />
                      </div>
-                     <div className="col-xs-12 col-sm-12 hidden-md hidden-lg hidden-xl">
+                     <div className="hidden-md hidden-lg hidden-xl">
                         <HorizontalMenu />
                      </div>
-                     <div className="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+                     <div className="menu-group hidden-sm hidden-xs view-port">
+                        <VerticalMenu />
+                     </div>
+                     <div className="right-view-port view-port">
                         <div className="row">
-                           <div className="hidden-sm hidden-xs col-md-2 col-lg-2">
-                              <VerticalMenu />
-                           </div>
-                           <div className="col-xs-1 col-sm-1 hidden-md hidden-lg hidden-xl">
+                           <div className="col-xs-1">
 
                            </div>
-                           <div className="col-xs-12 col-sm-12 col-md-9 col-lg-9" >
-                              <div className="view-window">
-                                 {this.props.children}
-                              </div>
+                           <div className="col-xs-10">
+                              {this.props.children}
                            </div>
-                           <div className="col-xs-1 col-sm-1 col-md-1 col-lg-1" >
-
-                           </div>
+                           <div className="col-xs-1"></div>
                         </div>
                      </div>
                   </div>
