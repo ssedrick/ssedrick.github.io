@@ -2,10 +2,6 @@ body {
    background-color: #163d64;
 }
 
-h2 {
-   color: #f9f9f9;
-}
-
 .vertical-center {
   min-height: 100%;  /* Fallback for browsers do NOT support vh unit */
   min-height: 100vh; /* These two lines are counted as one :-)       */
@@ -14,19 +10,84 @@ h2 {
   align-items: center;
 }
 
-.view-window {
-   background-color: #f9f9f9;
-   overflow: hidden;
-   outline: none;
-   height: 50vh;
-   margin-top: 10%;
-   margin-bottom: 10%;
-   box-sizing: content-box;
-   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2), 0 1px 90px 0 rgba(0, 0, 0, 0.19);
+.view-port {
+   position: relative;
+   float: left;
 }
 
-.view-window h2 {
+.view-port h2 {
    color: #163d64;
+}
+
+@media screen and (min-width: 992px) {
+   body {
+      overflow: hidden;
+   }
+
+   .left-view-port {
+      background-color: #212121;
+      color: #163d64;
+      overflow: hidden;
+      outline: none;
+      height: 79vh;
+      width: 33%;
+      margin-top: 5%;
+      margin-left: 5%;
+      margin-bottom: 5%;
+      box-sizing: content-box;
+      /*box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2), 0 1px 90px 0 rgba(0, 0, 0, 0.19);*/
+   }
+
+   .right-view-port {
+      background-color: #f9f9f9;
+      color: #163d64;
+      overflow-x: hidden;
+      overflow-y: scroll;
+      outline: none;
+      height: 79vh;
+      width: 51%;
+      margin-top: 5%;
+      margin-bottom: 5%;
+      margin-right: 5%;
+      box-sizing: content-box;
+      /*box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2), 0 1px 90px 0 rgba(0, 0, 0, 0.19);*/
+   }
+
+}
+
+@media screen and (max-width: 991px) {
+   .left-view-port {
+      background-color: #212121;
+      color: #163d64;
+      overflow: hidden;
+      outline: none;
+      height: 50vh;
+      width: 80%;
+      position: relative;
+      float: left;
+      margin-top: 10%;
+      margin-right: 10%;
+      margin-left: 10%;
+      box-sizing: content-box;
+      /*box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2), 0 1px 90px 0 rgba(0, 0, 0, 0.19);*/
+   }
+
+   .right-view-port {
+      background-color: #f9f9f9;
+      color: #163d64;
+      overflow: hidden;
+      outline: none;
+      height: 50vh;
+      width: 80%;
+      float: left;
+      position: relative;
+      margin-bottom:10%;
+      margin-left: 10%;
+      margin-right: 10%;
+      box-sizing: content-box;
+      /*box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2), 0 1px 90px 0 rgba(0, 0, 0, 0.19);*/
+   }
+
 }
 
 .square {
@@ -36,10 +97,15 @@ h2 {
    font-size: 4em;
 }
 
+.menu-group {
+   width: 56px;
+}
+
 .menu-item {
    background-color: #163d64;
    border-color: #113050;
    text-align: center;
+   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2), 0 1px 90px 0 rgba(0, 0, 0, 0.19);
 }
 
 .menu-item i {
@@ -80,7 +146,28 @@ h2 {
 
 .menu-item:active {
    background-color: #f9f9f9;
+   border-right: none;
 }
 .menu-item:active i {
    color: #163d64;
+}
+
+/* Scrollbar styles */
+::-webkit-scrollbar {
+   width: 7px;
+   height: 7px;
+}
+
+::-webkit-scrollbar-track {
+   background: #f9f9f9;
+   border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+   border-radius: 10px;
+   background: #ccc;
+}
+
+::-webkit-scrollbar-thumb:hover {
+   background: #999;
 }

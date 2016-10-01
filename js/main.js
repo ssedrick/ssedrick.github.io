@@ -26470,40 +26470,32 @@ var Site = React.createClass({
                { className: 'row' },
                React.createElement(
                   'div',
-                  { className: 'col-xs-12 col-sm-12 col-md-3 col-lg-3' },
-                  React.createElement(
-                     'div',
-                     { className: 'view-window' },
-                     React.createElement(PictureViewer, null)
-                  )
+                  { className: 'left-view-port view-port' },
+                  React.createElement(PictureViewer, null)
                ),
                React.createElement(
                   'div',
-                  { className: 'col-xs-12 col-sm-12 hidden-md hidden-lg hidden-xl' },
+                  { className: 'hidden-md hidden-lg hidden-xl' },
                   React.createElement(HorizontalMenu, null)
                ),
                React.createElement(
                   'div',
-                  { className: 'col-xs-12 col-sm-12 col-md-8 col-lg-8' },
+                  { className: 'menu-group hidden-sm hidden-xs view-port' },
+                  React.createElement(VerticalMenu, null)
+               ),
+               React.createElement(
+                  'div',
+                  { className: 'right-view-port view-port' },
                   React.createElement(
                      'div',
                      { className: 'row' },
+                     React.createElement('div', { className: 'col-xs-1' }),
                      React.createElement(
                         'div',
-                        { className: 'hidden-sm hidden-xs col-md-2 col-lg-2' },
-                        React.createElement(VerticalMenu, null)
+                        { className: 'col-xs-10' },
+                        this.props.children
                      ),
-                     React.createElement('div', { className: 'col-xs-1 col-sm-1 hidden-md hidden-lg hidden-xl' }),
-                     React.createElement(
-                        'div',
-                        { className: 'col-xs-12 col-sm-12 col-md-9 col-lg-9' },
-                        React.createElement(
-                           'div',
-                           { className: 'view-window' },
-                           this.props.children
-                        )
-                     ),
-                     React.createElement('div', { className: 'col-xs-1 col-sm-1 col-md-1 col-lg-1' })
+                     React.createElement('div', { className: 'col-xs-1' })
                   )
                )
             )
