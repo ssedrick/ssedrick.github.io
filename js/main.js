@@ -26591,17 +26591,17 @@ var Home = React.createClass({
          React.createElement('hr', null),
          React.createElement(
             'iframe',
-            { src: 'https://onedrive.live.com/redir.aspx?cid=c9d9457f88e5a81e&resid=C9D9457F88E5A81E!4853&parId=C9D9457F88E5A81E!103&authkey=!APvEDmQw2soZ1bA&ithint=file%2cdocx' },
+            { src: 'https://onedrive.live.com/embed?cid=C9D9457F88E5A81E&resid=C9D9457F88E5A81E%214853&authkey=AM2Tbui0rLg39i0&em=2&wdStartOn=1', width: '476px', height: '288px', frameborder: '0' },
             'This is an embedded ',
             React.createElement(
                'a',
-               { target: '_blank', href: 'http://office.com' },
+               { target: '_blank', href: 'https://office.com' },
                'Microsoft Office'
             ),
             ' document, powered by ',
             React.createElement(
                'a',
-               { target: '_blank', href: 'http://office.com/webapps' },
+               { target: '_blank', href: 'https://office.com/webapps' },
                'Office Online'
             ),
             '.'
