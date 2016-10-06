@@ -84,11 +84,6 @@
           "icon": "devicon-github-plain"
        },
        {
-          "id": 5,
-          "name": "Vault",
-          "icon": "devicon-icon-plain"
-       },
-       {
           "id": 6,
           "name": "Atom",
           "icon": "devicon-atom-original"
@@ -96,23 +91,8 @@
        {
           "id": 7,
           "name": "Android Studio",
-          "icon": "devicon-androidstudio-plain"
+          "icon": "devicon-android-plain"
        },
-       {
-          "id": 8,
-          "name": "Emacs",
-          "icon": "devicon-emacs-plain"
-       },
-       {
-          "id": 9,
-          "name": "Pycharm",
-          "icon": "devicon-pycharm-plain"
-       },
-       {
-          "id": 10,
-          "name": "NodePackageManager",
-          "icon": "devicon-npm-plain"
-       }
      ]
   }
 }

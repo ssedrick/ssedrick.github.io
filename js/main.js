@@ -26577,34 +26577,34 @@ module.exports = Portfolio;
 var React = require('react');
 
 var Home = React.createClass({
-   displayName: 'Home',
+   displayName: "Home",
 
    render: function () {
       return React.createElement(
-         'div',
-         null,
+         "div",
+         { className: "row" },
          React.createElement(
-            'h2',
-            { className: 'view-port-header' },
-            'Resume'
+            "h2",
+            { className: "view-port-header" },
+            "Resume"
          ),
-         React.createElement('hr', null),
+         React.createElement("hr", null),
          React.createElement(
-            'iframe',
-            { src: 'https://onedrive.live.com/embed?cid=C9D9457F88E5A81E&resid=C9D9457F88E5A81E%214853&authkey=AM2Tbui0rLg39i0&em=2&wdStartOn=1', width: '476px', height: 'auto', frameborder: '0' },
-            'This is an embedded ',
+            "iframe",
+            { src: "https://onedrive.live.com/embed?cid=C9D9457F88E5A81E&resid=C9D9457F88E5A81E%214853&authkey=AM2Tbui0rLg39i0&em=2&wdStartOn=1", width: "476px", frameBorder: "0" },
+            "This is an embedded ",
             React.createElement(
-               'a',
-               { target: '_blank', href: 'https://office.com' },
-               'Microsoft Office'
+               "a",
+               { target: "_blank", href: "https://office.com" },
+               "Microsoft Office"
             ),
-            ' document, powered by ',
+            " document, powered by ",
             React.createElement(
-               'a',
-               { target: '_blank', href: 'https://office.com/webapps' },
-               'Office Online'
+               "a",
+               { target: "_blank", href: "https://office.com/webapps" },
+               "Office Online"
             ),
-            '.'
+            "."
          )
       );
    }

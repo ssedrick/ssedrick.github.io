@@ -12,7 +12,8 @@ h2 {
 }
 
 iframe {
-   height: auto;
+   max-height: 600px;
+   min-height: 400px;
 }
 
 .vertical-center {
@@ -43,8 +44,7 @@ iframe {
 
 .scroll-port {
    margin: 5%;
-   overflow-x: hidden;
-   overflow-y: scroll;
+   height: 100%;
 }
 
 @media screen and (min-width: 992px) {
