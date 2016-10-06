@@ -26411,16 +26411,26 @@ module.exports = CardList;
 var React = require('react');
 
 var Home = React.createClass({
-   displayName: 'Home',
+   displayName: "Home",
 
    render: function () {
       return React.createElement(
-         'div',
-         null,
+         "div",
+         { className: "home-content" },
          React.createElement(
-            'h2',
+            "h4",
             null,
-            'Home!'
+            "Hi, I'm"
+         ),
+         React.createElement(
+            "h3",
+            null,
+            "Shem Sedrick"
+         ),
+         React.createElement(
+            "h6",
+            null,
+            "Programmer, Outdoor Enthusiast, and Kung Fu Master"
          )
       );
    }
@@ -26510,16 +26520,17 @@ module.exports = HorizontalMenu;
 var React = require('react');
 
 var PictureViewer = React.createClass({
-   displayName: 'PictureViewer',
+   displayName: "PictureViewer",
 
    render: function () {
       return React.createElement(
-         'div',
+         "div",
          null,
+         React.createElement("img", { src: "images/profile.jpg", alt: "Shem Sedrick", width: "100%" }),
          React.createElement(
-            'h2',
-            null,
-            'Header!'
+            "h6",
+            { style: { margin: "5px", textAlign: "center", color: "#f9f9f9" } },
+            "The best thing about a boolean is even if you are wrong, you are only off by a bit. \xA0 ~Anonymous"
          )
       );
    }
