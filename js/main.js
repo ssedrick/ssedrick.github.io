@@ -26488,14 +26488,8 @@ var Site = React.createClass({
                   { className: 'right-view-port view-port' },
                   React.createElement(
                      'div',
-                     { className: 'row' },
-                     React.createElement('div', { className: 'col-xs-1' }),
-                     React.createElement(
-                        'div',
-                        { className: 'col-xs-10' },
-                        this.props.children
-                     ),
-                     React.createElement('div', { className: 'col-xs-1' })
+                     { className: 'scroll-port' },
+                     this.props.children
                   )
                )
             )
@@ -26546,12 +26540,12 @@ var Skills = React.createClass({
          React.createElement(
             'div',
             null,
-            React.createElement(ThumbnailList, { listItems: this.state.languageList })
+            React.createElement(ThumbnailList, { listItems: this.state.languageList, title: 'Languages and Frameworks' })
          ),
          React.createElement(
             'div',
             null,
-            React.createElement(ThumbnailList, { listItems: this.state.technologyList })
+            React.createElement(ThumbnailList, { listItems: this.state.technologyList, title: 'Technologies' })
          )
       );
    }
@@ -26584,7 +26578,11 @@ var ThumbnailList = React.createClass({
       var items = [];
       for (var i = 0; i < this.props.listItems.length; i++) {
          var item = this.props.listItems[i];
-         items.push(React.createElement(Thumbnail, { key: item.id, src: item.icon }));
+         items.push(React.createElement(
+            'div',
+            { className: 'square' },
+            React.createElement(Thumbnail, { key: item.id, src: item.icon })
+         ));
       }
       return items;
    },
@@ -26592,6 +26590,11 @@ var ThumbnailList = React.createClass({
       return React.createElement(
          'div',
          { className: 'row' },
+         React.createElement(
+            'h3',
+            null,
+            this.props.title
+         ),
          this.renderListItems()
       );
    }
@@ -26713,8 +26716,8 @@ module.exports = SkillsStore;
 
 },{"../services/httpservice":255,"./actions.jsx":253,"reflux":236}],255:[function(require,module,exports){
 var Fetch = require('whatwg-fetch');
-var baseUrl = 'http://localhost:8080/';
-
+//var baseUrl = 'http://localhost:8080/';
+var baseUrl = 'https://ssedrick.github.io/';
 var service = {
    get: function (url) {
       return fetch(baseUrl + url).then(function (response) {

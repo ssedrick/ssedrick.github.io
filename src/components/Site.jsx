@@ -19,14 +19,8 @@ var Site = React.createClass({
                         <VerticalMenu />
                      </div>
                      <div className="right-view-port view-port">
-                        <div className="row">
-                           <div className="col-xs-1">
-
-                           </div>
-                           <div className="col-xs-10">
-                              {this.props.children}
-                           </div>
-                           <div className="col-xs-1"></div>
+                        <div className="scroll-port">
+                           {this.props.children}
                         </div>
                      </div>
                   </div>

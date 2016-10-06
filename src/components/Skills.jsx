@@ -28,10 +28,10 @@ var Skills = React.createClass({
          <div>
             <h2>Skills</h2>
             <div >
-               <ThumbnailList listItems={this.state.languageList} />
+               <ThumbnailList listItems={this.state.languageList} title="Languages and Frameworks"/>
             </div>
             <div >
-               <ThumbnailList listItems={this.state.technologyList} />
+               <ThumbnailList listItems={this.state.technologyList} title="Technologies"/>
             </div>
          </div>
       );
