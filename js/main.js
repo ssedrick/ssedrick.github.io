@@ -26430,7 +26430,27 @@ var Home = React.createClass({
          React.createElement(
             "h6",
             null,
-            "Programmer, Outdoor Enthusiast, and Kung Fu Master"
+            "Programmer"
+         ),
+         React.createElement(
+            "p",
+            null,
+            "Currently work on my Bachelors in Computer Science"
+         ),
+         React.createElement(
+            "p",
+            null,
+            "Looking for ways to expand my knowledge and skills"
+         ),
+         React.createElement(
+            "p",
+            null,
+            React.createElement(
+               "a",
+               { href: "mailto:ssedrick1@gmail.com" },
+               "ssedrick1@gmail.com"
+            ),
+            " \u2013 (479) 310 - 6650"
          )
       );
    }
