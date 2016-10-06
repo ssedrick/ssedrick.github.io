@@ -26290,6 +26290,8 @@ var hashHistory = require('react-router').hashHistory;
 
 var Site = require('./components/Site.jsx');
 var Home = require('./components/Home.jsx');
+var Resume = require('./components/Resume.jsx');
+var Portfolio = require('./components/Portfolio.jsx');
 var Skills = require('./components/Skills.jsx');
 var About = require('./components/About.jsx');
 
@@ -26300,6 +26302,8 @@ var Routes = React.createElement(
       Route,
       { path: '/', component: Site },
       React.createElement(Route, { path: '/home', component: Home }),
+      React.createElement(Route, { path: '/resume', component: Resume }),
+      React.createElement(Route, { path: '/portfolio', component: Portfolio }),
       React.createElement(Route, { path: '/skills', component: Skills }),
       React.createElement(Route, { path: '/about', component: About }),
       React.createElement(Route, { path: '/*', component: Home })
@@ -26308,7 +26312,7 @@ var Routes = React.createElement(
 
 module.exports = Routes;
 
-},{"./components/About.jsx":243,"./components/Home.jsx":244,"./components/Site.jsx":247,"./components/Skills.jsx":248,"react":220,"react-router":83}],243:[function(require,module,exports){
+},{"./components/About.jsx":243,"./components/Home.jsx":246,"./components/Portfolio.jsx":249,"./components/Resume.jsx":250,"./components/Site.jsx":251,"./components/Skills.jsx":252,"react":220,"react-router":83}],243:[function(require,module,exports){
 var React = require('react');
 
 var About = React.createClass({
@@ -26332,6 +26336,80 @@ module.exports = About;
 },{"react":220}],244:[function(require,module,exports){
 var React = require('react');
 
+var Card = React.createClass({
+   displayName: "Card",
+
+   render: function () {
+      return React.createElement(
+         "div",
+         { className: "site-card mdl-card mdl-shadow--2dp" },
+         React.createElement(
+            "div",
+            { className: "mdl-card__title mdl-card--expand", style: { background: "url('" + this.props.data.image_url + "') center no-repeat #163d64", backgroundSize: "320px" } },
+            React.createElement(
+               "h2",
+               { className: "mdl-card__title-text", style: { color: "#f9f9f9" } },
+               this.props.data.name
+            )
+         ),
+         React.createElement(
+            "div",
+            { className: "mdl-card__supporting-text" },
+            this.props.data.short_description
+         ),
+         React.createElement(
+            "div",
+            { className: "mdl-card__actions mdl-card--border" },
+            React.createElement(
+               "a",
+               { href: this.props.data.url, className: "mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" },
+               this.props.data.action
+            )
+         )
+      );
+   }
+});
+
+module.exports = Card;
+
+},{"react":220}],245:[function(require,module,exports){
+var React = require('react');
+var Card = require('./Card.jsx');
+
+var CardList = React.createClass({
+   displayName: 'CardList',
+
+   renderListItems: function () {
+      var items = [];
+      for (var i = 0; i < this.props.listItems.length; i++) {
+         var item = this.props.listItems[i];
+         items.push(React.createElement(Card, { key: item.id, data: item }));
+      }
+      return items;
+   },
+   render: function () {
+      return React.createElement(
+         'div',
+         null,
+         React.createElement(
+            'h3',
+            { className: 'list-header' },
+            this.props.title
+         ),
+         React.createElement(
+            'div',
+            { className: 'row' },
+            this.renderListItems()
+         )
+      );
+   }
+});
+
+module.exports = CardList;
+
+},{"./Card.jsx":244,"react":220}],246:[function(require,module,exports){
+var React = require('react');
+
 var Home = React.createClass({
    displayName: 'Home',
 
@@ -26350,7 +26428,7 @@ var Home = React.createClass({
 
 module.exports = Home;
 
-},{"react":220}],245:[function(require,module,exports){
+},{"react":220}],247:[function(require,module,exports){
 var React = require('react');
 var Link = require('react-router').Link;
 
@@ -26428,7 +26506,7 @@ var HorizontalMenu = React.createClass({
 
 module.exports = HorizontalMenu;
 
-},{"react":220,"react-router":83}],246:[function(require,module,exports){
+},{"react":220,"react-router":83}],248:[function(require,module,exports){
 var React = require('react');
 
 var PictureViewer = React.createClass({
@@ -26449,7 +26527,92 @@ var PictureViewer = React.createClass({
 
 module.exports = PictureViewer;
 
-},{"react":220}],247:[function(require,module,exports){
+},{"react":220}],249:[function(require,module,exports){
+var React = require('react');
+var Reflux = require('reflux');
+var Actions = require('../reflux/actions.jsx');
+var ProjectStore = require('../reflux/project-store.jsx');
+
+var CardList = require('./CardList.jsx');
+
+var Portfolio = React.createClass({
+   displayName: 'Portfolio',
+
+   mixins: [Reflux.listenTo(ProjectStore, 'onChange')],
+   getInitialState: function () {
+      return {
+         projectList: []
+      };
+   },
+   componentWillMount: function () {
+      Actions.getProjects();
+   },
+   onChange: function (event, store) {
+      this.setState({
+         projectList: store.projects
+      });
+   },
+   render: function () {
+      return React.createElement(
+         'div',
+         null,
+         React.createElement(
+            'h2',
+            { className: 'view-port-header' },
+            'Portfolio'
+         ),
+         React.createElement('hr', null),
+         React.createElement(
+            'div',
+            null,
+            React.createElement(CardList, { listItems: this.state.projectList, title: 'Projects' })
+         )
+      );
+   }
+});
+
+module.exports = Portfolio;
+
+},{"../reflux/actions.jsx":257,"../reflux/project-store.jsx":258,"./CardList.jsx":245,"react":220,"reflux":236}],250:[function(require,module,exports){
+var React = require('react');
+
+var Home = React.createClass({
+   displayName: 'Home',
+
+   render: function () {
+      return React.createElement(
+         'div',
+         null,
+         React.createElement(
+            'h2',
+            { className: 'view-port-header' },
+            'Resume'
+         ),
+         React.createElement('hr', null),
+         React.createElement(
+            'iframe',
+            { src: 'https://onedrive.live.com/redir.aspx?cid=c9d9457f88e5a81e&resid=C9D9457F88E5A81E!4853&parId=C9D9457F88E5A81E!103&authkey=!APvEDmQw2soZ1bA&ithint=file%2cdocx' },
+            'This is an embedded ',
+            React.createElement(
+               'a',
+               { target: '_blank', href: 'http://office.com' },
+               'Microsoft Office'
+            ),
+            ' document, powered by ',
+            React.createElement(
+               'a',
+               { target: '_blank', href: 'http://office.com/webapps' },
+               'Office Online'
+            ),
+            '.'
+         )
+      );
+   }
+});
+
+module.exports = Home;
+
+},{"react":220}],251:[function(require,module,exports){
 var React = require('react');
 var PictureViewer = require('./PictureViewer.jsx');
 var VerticalMenu = require('./VerticalMenu.jsx');
@@ -26500,7 +26663,7 @@ var Site = React.createClass({
 
 module.exports = Site;
 
-},{"./HorizontalMenu.jsx":245,"./PictureViewer.jsx":246,"./VerticalMenu.jsx":251,"react":220}],248:[function(require,module,exports){
+},{"./HorizontalMenu.jsx":247,"./PictureViewer.jsx":248,"./VerticalMenu.jsx":255,"react":220}],252:[function(require,module,exports){
 var React = require('react');
 var Reflux = require('reflux');
 var Actions = require('../reflux/actions.jsx');
@@ -26524,8 +26687,12 @@ var Skills = React.createClass({
    onChange: function (event, store) {
       console.info("Changing state", store);
       this.setState({
-         languageList: store.languages,
-         technologyList: store.technologies
+         languageList: store.languages.sort(function (a, b) {
+            return (a.name > b.name) - (a.name < b.name);
+         }),
+         technologyList: store.technologies.sort(function (a, b) {
+            return (a.name > b.name) - (a.name < b.name);
+         })
       });
    },
    render: function () {
@@ -26534,9 +26701,10 @@ var Skills = React.createClass({
          null,
          React.createElement(
             'h2',
-            null,
+            { className: 'view-port-header' },
             'Skills'
          ),
+         React.createElement('hr', null),
          React.createElement(
             'div',
             null,
@@ -26553,7 +26721,7 @@ var Skills = React.createClass({
 
 module.exports = Skills;
 
-},{"../reflux/actions.jsx":253,"../reflux/skills-store.jsx":254,"./ThumbnailList.jsx":250,"react":220,"reflux":236}],249:[function(require,module,exports){
+},{"../reflux/actions.jsx":257,"../reflux/skills-store.jsx":259,"./ThumbnailList.jsx":254,"react":220,"reflux":236}],253:[function(require,module,exports){
 var React = require('react');
 
 var Thumbnail = React.createClass({
@@ -26566,7 +26734,7 @@ var Thumbnail = React.createClass({
 
 module.exports = Thumbnail;
 
-},{"react":220}],250:[function(require,module,exports){
+},{"react":220}],254:[function(require,module,exports){
 var React = require('react');
 var Thumbnail = require('./Thumbnail.jsx');
 
@@ -26602,7 +26770,7 @@ var ThumbnailList = React.createClass({
 
 module.exports = ThumbnailList;
 
-},{"./Thumbnail.jsx":249,"react":220}],251:[function(require,module,exports){
+},{"./Thumbnail.jsx":253,"react":220}],255:[function(require,module,exports){
 var React = require('react');
 var Link = require('react-router').Link;
 
@@ -26652,47 +26820,58 @@ var VerticalMenu = React.createClass({
                   { 'data-toggle': 'tooltip', 'data-placement': 'right', title: 'Skills', className: 'material-icons' },
                   'keyboard'
                )
-            ),
-            React.createElement(
-               Link,
-               { to: `/experience`, className: 'menu-item list-group-item' },
-               React.createElement(
-                  'i',
-                  { 'data-toggle': 'tooltip', 'data-placement': 'right', title: 'Experience', className: 'material-icons' },
-                  'schedule'
-               )
-            ),
-            React.createElement(
-               Link,
-               { to: `/about`, className: 'menu-item list-group-item' },
-               React.createElement(
-                  'i',
-                  { 'data-toggle': 'tooltip', 'data-placement': 'right', title: 'About Me', className: 'material-icons' },
-                  'person'
-               )
             )
          )
       );
    }
 });
 
+/* <Link to={`/experience`}  className="menu-item list-group-item">
+   <i data-toggle="tooltip" data-placement="right" title="Experience" className="material-icons">schedule</i>
+</Link>
+<Link to={`/about`}  className="menu-item list-group-item">
+   <i data-toggle="tooltip" data-placement="right" title="About Me" className="material-icons">person</i>
+</Link> */
+
 module.exports = VerticalMenu;
 
-},{"react":220,"react-router":83}],252:[function(require,module,exports){
+},{"react":220,"react-router":83}],256:[function(require,module,exports){
 var React = require('react');
 var ReactDOM = require('react-dom');
 var Routes = require('./Routes.jsx');
 
 ReactDOM.render(Routes, document.getElementById('site'));
 
-},{"./Routes.jsx":242,"react":220,"react-dom":53}],253:[function(require,module,exports){
+},{"./Routes.jsx":242,"react":220,"react-dom":53}],257:[function(require,module,exports){
 var Reflux = require('reflux');
 
-var Actions = Reflux.createActions(["getSkills"]);
+var Actions = Reflux.createActions(["getSkills", "getProjects"]);
 
 module.exports = Actions;
 
-},{"reflux":236}],254:[function(require,module,exports){
+},{"reflux":236}],258:[function(require,module,exports){
+var Reflux = require('reflux');
+var Actions = require('./actions.jsx');
+var HTTP = require('../services/httpservice');
+
+var ProjectStore = Reflux.createStore({
+   listenables: [Actions],
+   getProjects: function () {
+      HTTP.get('data/projects.json').then(function (response) {
+         //console.info("Response", response);
+         this.data = response.Data;
+         //console.info("Store data", this.data);
+         this.updateProjects();
+      }.bind(this));
+   },
+   updateProjects: function () {
+      this.trigger('change', this.data);
+   }
+});
+
+module.exports = ProjectStore;
+
+},{"../services/httpservice":260,"./actions.jsx":257,"reflux":236}],259:[function(require,module,exports){
 var Reflux = require('reflux');
 var Actions = require('./actions.jsx');
 var HTTP = require('../services/httpservice');
@@ -26714,10 +26893,10 @@ var SkillsStore = Reflux.createStore({
 
 module.exports = SkillsStore;
 
-},{"../services/httpservice":255,"./actions.jsx":253,"reflux":236}],255:[function(require,module,exports){
+},{"../services/httpservice":260,"./actions.jsx":257,"reflux":236}],260:[function(require,module,exports){
 var Fetch = require('whatwg-fetch');
-//var baseUrl = 'http://localhost:8080/';
-var baseUrl = 'https://ssedrick.github.io/';
+var baseUrl = 'http://localhost:8080/';
+//var baseUrl = 'https://ssedrick.github.io/';
 var service = {
    get: function (url) {
       return fetch(baseUrl + url).then(function (response) {
@@ -26728,4 +26907,4 @@ var service = {
 
 module.exports = service;
 
-},{"whatwg-fetch":241}]},{},[252]);
+},{"whatwg-fetch":241}]},{},[256]);

@@ -19,15 +19,16 @@ var Skills = React.createClass({
    onChange: function(event, store) {
       console.info("Changing state", store);
       this.setState({
-         languageList: store.languages,
-         technologyList: store.technologies
+         languageList: store.languages.sort(function(a,b) { return (a.name > b.name) - (a.name < b.name); }),
+         technologyList: store.technologies.sort(function(a,b) { return (a.name > b.name) - (a.name < b.name); })
       });
    },
    render: function() {
       return (
          <div>
-            <h2>Skills</h2>
-            <div >
+            <h2 className="view-port-header">Skills</h2>
+            <hr />
+            <div>
                <ThumbnailList listItems={this.state.languageList} title="Languages and Frameworks"/>
             </div>
             <div >

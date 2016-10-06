@@ -19,16 +19,18 @@ var VerticalMenu = React.createClass({
                <Link to={`/skills`}  className="menu-item list-group-item">
                   <i data-toggle="tooltip" data-placement="right" title="Skills" className="material-icons">keyboard</i>
                </Link>
-               <Link to={`/experience`}  className="menu-item list-group-item">
-                  <i data-toggle="tooltip" data-placement="right" title="Experience" className="material-icons">schedule</i>
-               </Link>
-               <Link to={`/about`}  className="menu-item list-group-item">
-                  <i data-toggle="tooltip" data-placement="right" title="About Me" className="material-icons">person</i>
-               </Link>
+
             </div>
          </div>
       );
    }
 });
+
+/* <Link to={`/experience`}  className="menu-item list-group-item">
+   <i data-toggle="tooltip" data-placement="right" title="Experience" className="material-icons">schedule</i>
+</Link>
+<Link to={`/about`}  className="menu-item list-group-item">
+   <i data-toggle="tooltip" data-placement="right" title="About Me" className="material-icons">person</i>
+</Link> */
 
 module.exports = VerticalMenu;
