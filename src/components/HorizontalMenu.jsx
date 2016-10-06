@@ -21,17 +21,19 @@ var HorizontalMenu = React.createClass({
                <Link to={`/skills`}  className="menu-item list-group-item col-xs-1 col-sm-1">
                   <i data-toggle="tooltip" data-placement="bottom" title="Skills" className="material-icons">keyboard</i>
                </Link>
-               <Link to={`/experience`}  className="menu-item list-group-item col-xs-1 col-sm-1">
-                  <i data-toggle="tooltip" data-placement="bottom" title="Experience" className="material-icons">schedule</i>
-               </Link>
-               <Link to={`/about`}  className="menu-item list-group-item col-xs-1 col-sm-1">
-                  <i data-toggle="tooltip" data-placement="bottom" title="About Me" className="material-icons">person</i>
-               </Link>
+
                <div className="col-xs-3 col-sm-3"></div>
             </div>
          </div>
       );
    }
 });
+
+/*<Link to={`/experience`}  className="menu-item list-group-item col-xs-1 col-sm-1">
+   <i data-toggle="tooltip" data-placement="bottom" title="Experience" className="material-icons">schedule</i>
+</Link>
+<Link to={`/about`}  className="menu-item list-group-item col-xs-1 col-sm-1">
+   <i data-toggle="tooltip" data-placement="bottom" title="About Me" className="material-icons">person</i>
+</Link>*/
 
 module.exports = HorizontalMenu;

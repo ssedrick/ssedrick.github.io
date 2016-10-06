@@ -26490,29 +26490,18 @@ var HorizontalMenu = React.createClass({
                   'keyboard'
                )
             ),
-            React.createElement(
-               Link,
-               { to: `/experience`, className: 'menu-item list-group-item col-xs-1 col-sm-1' },
-               React.createElement(
-                  'i',
-                  { 'data-toggle': 'tooltip', 'data-placement': 'bottom', title: 'Experience', className: 'material-icons' },
-                  'schedule'
-               )
-            ),
-            React.createElement(
-               Link,
-               { to: `/about`, className: 'menu-item list-group-item col-xs-1 col-sm-1' },
-               React.createElement(
-                  'i',
-                  { 'data-toggle': 'tooltip', 'data-placement': 'bottom', title: 'About Me', className: 'material-icons' },
-                  'person'
-               )
-            ),
             React.createElement('div', { className: 'col-xs-3 col-sm-3' })
          )
       );
    }
 });
+
+/*<Link to={`/experience`}  className="menu-item list-group-item col-xs-1 col-sm-1">
+   <i data-toggle="tooltip" data-placement="bottom" title="Experience" className="material-icons">schedule</i>
+</Link>
+<Link to={`/about`}  className="menu-item list-group-item col-xs-1 col-sm-1">
+   <i data-toggle="tooltip" data-placement="bottom" title="About Me" className="material-icons">person</i>
+</Link>*/
 
 module.exports = HorizontalMenu;
 
