@@ -26535,7 +26535,7 @@ var PictureViewer = React.createClass({
       return React.createElement(
          "div",
          null,
-         React.createElement("img", { src: "images/profile.jpg", alt: "Shem Sedrick", width: "100%" }),
+         React.createElement("img", { src: "images/profile.jpg", alt: "Shem Sedrick", className: "profile-image" }),
          React.createElement(
             "h6",
             { style: { margin: "5px", textAlign: "center", color: "#f9f9f9" } },
