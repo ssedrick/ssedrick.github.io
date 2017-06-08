@@ -99,6 +99,11 @@
           "icon": "devicon-nodejs-plain-wordmark"
        },
        {
+          "id": 10,
+          "name": "Webpack",
+          "icon": "devicon-webpack-plain-wordmark"
+       }
+       {
           "id": 6,
           "name": "Atom",
           "icon": "devicon-atom-original-wordmark"
