@@ -27675,6 +27675,7 @@ arguments[4][44][0].apply(exports,arguments)
 var React = require('react');
 var Router = require('react-router').Router;
 var Route = require('react-router').Route;
+var IndexRoute = require('react-router').IndexRoute;
 var hashHistory = require('react-router').hashHistory;
 
 var Site = require('./components/Site.jsx');
@@ -27690,6 +27691,7 @@ var Routes = React.createElement(
    React.createElement(
       Route,
       { path: '/', component: Site },
+      React.createElement(IndexRoute, { component: Home }),
       React.createElement(Route, { path: '/home', component: Home }),
       React.createElement(Route, { path: '/resume', component: Resume }),
       React.createElement(Route, { path: '/portfolio', component: Portfolio }),

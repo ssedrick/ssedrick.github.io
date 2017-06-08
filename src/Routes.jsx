@@ -1,6 +1,7 @@
 var React = require('react');
 var Router = require('react-router').Router;
 var Route = require('react-router').Route;
+var IndexRoute = require('react-router').IndexRoute;
 var hashHistory = require('react-router').hashHistory;
 
 var Site = require('./components/Site.jsx');
@@ -13,6 +14,7 @@ var About = require('./components/About.jsx');
 var Routes = (
    <Router history={hashHistory} >
       <Route path="/" component={Site} >
+         <IndexRoute component={Home} />
          <Route path="/home" component={Home} />
          <Route path="/resume" component={Resume} />
          <Route path="/portfolio" component={Portfolio} />
