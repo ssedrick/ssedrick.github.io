@@ -28094,7 +28094,6 @@ var Skills = React.createClass({
       Actions.getSkills();
    },
    onChange: function (event, store) {
-      console.info("Changing state", store);
       this.setState({
          languageList: store.languages.sort(function (a, b) {
             return (a.name > b.name) - (a.name < b.name);
@@ -28151,7 +28150,6 @@ var ThumbnailList = React.createClass({
    displayName: 'ThumbnailList',
 
    renderListItems: function () {
-      console.info(this.props);
       var items = [];
       for (var i = 0; i < this.props.listItems.length; i++) {
          var item = this.props.listItems[i];
@@ -28289,9 +28287,7 @@ var SkillsStore = Reflux.createStore({
    listenables: [Actions],
    getSkills: function () {
       HTTP.get('data/skills.json').then(function (response) {
-         console.info("Response", response);
          this.data = response.Data;
-         console.info("Store data", this.data);
          this.updateSkills();
       }.bind(this));
    },

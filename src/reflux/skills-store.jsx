@@ -7,9 +7,7 @@ var SkillsStore = Reflux.createStore({
    getSkills: function() {
       HTTP.get('data/skills.json')
       .then(function (response) {
-         console.info("Response", response);
          this.data = response.Data;
-         console.info("Store data", this.data);
          this.updateSkills();
       }.bind(this));
    },

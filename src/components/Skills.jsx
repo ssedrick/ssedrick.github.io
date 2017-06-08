@@ -17,7 +17,6 @@ var Skills = React.createClass({
       Actions.getSkills();
    },
    onChange: function(event, store) {
-      console.info("Changing state", store);
       this.setState({
          languageList: store.languages.sort(function(a,b) { return (a.name > b.name) - (a.name < b.name); }),
          technologyList: store.technologies.sort(function(a,b) { return (a.name > b.name) - (a.name < b.name); })
