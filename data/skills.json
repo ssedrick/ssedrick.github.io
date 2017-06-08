@@ -19,7 +19,7 @@
        {
           "id": 4,
           "name": "JavaScript",
-          "icon": "devicon-javascript-plain-wordmark"
+          "icon": "devicon-javascript-plain"
        },
        {
           "id": 14,
@@ -69,7 +69,7 @@
        {
           "id": 12,
           "name": "PHP",
-          "icon": "devicon-php-plain-wordmark"
+          "icon": "devicon-php-plain"
        }
      ],
      "technologies": [
@@ -81,7 +81,7 @@
        {
           "id": 2,
           "name": "Linux",
-          "icon": "devicon-linux-plain-wordmark"
+          "icon": "devicon-linux-plain"
        },
        {
           "id": 3,
