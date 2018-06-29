@@ -15,6 +15,9 @@ export const colors = {
 	},
 	white: {
 		white: '#f5f5f5',
-	}
-}
+	},
+	grey: {
+		darker: '#212121',
+	},
+};
 

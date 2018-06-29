@@ -1,25 +1,23 @@
-{
-   "Data" : {
-      "projects": [
-         {
-            "id": 1,
-            "name": "3D von Neumann Model",
-            "url": "https://tscott8.github.io/VNAness/VNADemo.html",
-            "image_url": "https://github.com/tscott8/VNAness/raw/master/images/3.png",
-            "action": "Explore",
-            "short_description": "An education tool for teaching the structural model of modern computers.",
-            "description": "A three dimentional model of computers built with three.js. I worked with a group to design and build this webpage. Our goal was to create an interactive, instructive computer model that would allow the user to examine the inside of a computer with out taking apart their own laptop."
+[
+	{
+		"id": 1,
+		"name": "3D von Neumann Model",
+		"title": "WebGL Computer Model",
+		"url": "https://tscott8.github.io/VNAness/VNADemo.html",
+		"imageUrl": "https://github.com/tscott8/VNAness/raw/master/images/3.png",
+		"action": "Explore",
+		"shortDescription": "An education tool for teaching the structural model of modern computers.",
+		"description": "A three dimentional model of computers built with three.js. I worked with a group to design and build this webpage. Our goal was to create an interactive, instructive computer model that would allow the user to examine the inside of a computer with out taking apart their own laptop."
 
-         },
-         {
-            "id": 2,
-            "name": "Arcane",
-            "url": "https://arcanestreaming.herokuapp.com/",
-            "image_url": "images/arcane.png",
-            "action": "View",
-            "short_description": "A music streaming application for enjoying indie music on web and mobile.",
-            "description": "Arcane is a music streaming application that I am working on as the main developer. My friends came up with the idea and are working on the business side of things. I am building the webpage, server, and mobile apps for the business.<br />For the website, I am using ReactJS as the view, Redux for the store, and the Django REST Framework for the backend.<br />As I do not have a Macintosh on which to work, I am currently only developing the mobile application for Android using AndroidStudio and Java.<br />While this is still a work in progress, I have learned a great deal about web development because of this project.<br/ ><br />A majority of the current code was developed as part of my Senior Project in conjunction with my friend Tyler Scott. This teamwork was a great benefit to the development as well as in learning the value of paired programming."
-         }
-      ]
-   }
-}
+	},
+	{
+		"id": 2,
+		"name": "Arcane",
+		"title": "React Music Streaming App",
+		"url": "https://arcanestreaming.herokuapp.com/",
+		"imageUrl": "/images/arcane.png",
+		"action": "View",
+		"shortDescription": "A music streaming application for enjoying indie music on web and mobile.",
+		"description": "Arcane is a music streaming application that I am working on as the main developer. My friends came up with the idea and are working on the business side of things. I am building the webpage, server, and mobile apps for the business.<br />For the website, I am using ReactJS as the view, Redux for the store, and the Django REST Framework for the backend.<br />As I do not have a Macintosh on which to work, I am currently only developing the mobile application for Android using AndroidStudio and Java.<br />While this is still a work in progress, I have learned a great deal about web development because of this project.<br/ ><br />A majority of the current code was developed as part of my Senior Project in conjunction with my friend Tyler Scott. This teamwork was a great benefit to the development as well as in learning the value of paired programming."
+	}
+]

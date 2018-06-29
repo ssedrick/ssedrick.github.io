@@ -10,11 +10,17 @@ const Background = styled.div`
 	padding: 10px;
 	background-color: ${props => props.isSelected ?
 		colors.white.white : colors.blue.darker};
+	&:hover {
+		background-color: ${colors.white.white};
+	}
 `;
 
 const Icon = styled.i`
 	color: ${props => props.isSelected ?
 		colors.blue.darker : colors.white.white};
+	${Background}:hover & {
+		color: ${colors.blue.darker};
+	}
 `;
 
 
@@ -26,7 +32,7 @@ class NavItem extends PureComponent {
 		location: object.isRequired,
 	}
 	render() {
-		const { url, name, icon, match } = this.props;
+		const { url, name, icon, location } = this.props;
 		const isSelected = location.pathname === url;
 		return (
 			<Link to={url}>

@@ -1,8 +1,2 @@
-var Reflux = require('reflux');
-
-var Actions = Reflux.createActions([
-   "getSkills",
-   "getProjects"
-]);
-
-module.exports = Actions;
+const GET_SKILLS = 'GET_SKILLS';
+const GET_PROJECTS = 'GET_PROJECTS';

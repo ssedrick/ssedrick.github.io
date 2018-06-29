@@ -1,5 +1,13 @@
 import React, { PureComponent } from 'react';
+import styled from 'styled-components';
 import Card from './Card';
+
+const Container = styled.div`
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: space-around;
+`;
 
 export default class CardList extends PureComponent {
 	renderListItems() {
@@ -11,9 +19,9 @@ export default class CardList extends PureComponent {
 		return (
 			<div>
 				<h3 className="list-header">{this.props.title}</h3>
-				<div className="row">
+				<Container>
 					{this.renderListItems()}
-				</div>
+				</Container>
 			</div>
 		);
 	}
