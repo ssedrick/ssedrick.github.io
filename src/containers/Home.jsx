@@ -7,7 +7,6 @@ export default class Home extends Component {
 			<Content>
 				<h4>Hi, I'm Shem Sedrick</h4>
 				<p>Looking for ways to expand my knowledge and skills</p>
-				<p><a href="mailto:ssedrick1@gmail.com">ssedrick1@gmail.com</a> &#8211; (479) 310 - 6650</p>
 			</Content>
 		);
 	}
