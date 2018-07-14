@@ -4,27 +4,46 @@
   "description": "My Personal Site, also used for resume",
   "main": "index.js",
   "scripts": {
-    "start": "watchify src/main.jsx -v -t [ babelify --presets [ react ] ] -o js/main.js"
+    "start": "webpack --mode development --watch",
+    "serve": "http-server",
+    "build": "webpack --mode production"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ssedrick/ssedrick.github.io.git"
   },
-  "author": "Rhuarc13",
+  "author": "Shem Sedrick (ssedrick1@gmail.com)",
   "license": "BSD-2-Clause",
   "bugs": {
     "url": "https://github.com/ssedrick/ssedrick.github.io/issues"
   },
   "dependencies": {
-    "babel-preset-react": "^6.5.0",
-    "babelify": "^7.2.0",
-    "devicon": "^2.0.0",
-    "react": "^0.14.8",
-    "react-dom": "^0.14.8",
-    "reflux": "^0.4.1",
-    "watchify": "~3.7.0",
-    "whatwg-fetch": "^1.0.0"
+    "@material-ui/core": "^1.2.3",
+    "axios": "^0.18.0",
+    "devicon": "*",
+    "devicons": "^1.8.0",
+    "prop-types": "^15.6.1",
+    "react": "^16.4.1",
+    "react-dom": "^16.4.1",
+    "react-router": "^4.3.1",
+    "react-router-dom": "^4.3.1",
+    "styled-components": "^3.3.3"
   },
   "homepage": "https://github.com/ssedrick/ssedrick.github.io#readme",
-  "devDependencies": {}
+  "devDependencies": {
+    "babel": "^6.23.0",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.4",
+    "babel-plugin-jsx": "^1.2.0",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
+    "eslint": "^4.19.1",
+    "eslint-plugin-import": "^2.12.0",
+    "eslint-plugin-react": "^7.9.1",
+    "http-server": "^0.11.1",
+    "webpack": "^4.12.0",
+    "webpack-cli": "^3.0.8",
+    "webpack-serve": "^1.0.4"
+  }
 }

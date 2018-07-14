@@ -1,23 +1,41 @@
-var React = require('react');
+import React from 'react';
+import { withStyles } from '@material-ui/core/styles';
+import MUICard from '@material-ui/core/Card';
+import CardMedia from '@material-ui/core/CardMedia';
+import CardHeader from '@material-ui/core/CardHeader';
+import CardContent from '@material-ui/core/CardContent';
+import CardActions from '@material-ui/core/CardActions';
+import Button from '@material-ui/core/Button';
 
-var Card = React.createClass({
-   render: function() {
-      return (
-         <div className="site-card mdl-card mdl-shadow--2dp">
-            <div className="mdl-card__title mdl-card--expand" style={{background: "url('" + this.props.data.image_url + "') center no-repeat #163d64", backgroundSize: "320px"}} >
-               <h2 className="mdl-card__title-text" style={{color: "#f9f9f9"}}>{this.props.data.name}</h2>
-            </div>
-            <div className="mdl-card__supporting-text">
-               {this.props.data.short_description}
-            </div>
-            <div className="mdl-card__actions mdl-card--border">
-               <a href={this.props.data.url} className="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
-                  {this.props.data.action}
-               </a>
-            </div>
-         </div>
-      );
-   }
-});
+const styles = {
+	card: {
+		maxWidth: '350px',
+	},
+	media: {
+		height: 0,
+		paddingTop: '56%',
+	}
+}
 
-module.exports = Card;
+const Card = ({ data, classes }) => (
+	<MUICard className={classes.card}>
+		<CardMedia
+			className={classes.media}
+			image={data.imageUrl}
+			title={data.title}
+		/>
+		<CardHeader
+			title={data.name}
+		/>
+		<CardContent>
+			{data.shortDescription}
+		</CardContent>
+		<CardActions>
+			<Button href={data.url}>
+				{data.action}
+			</Button>
+		</CardActions>
+	</MUICard>
+);
+
+export default withStyles(styles)(Card);

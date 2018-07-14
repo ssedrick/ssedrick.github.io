@@ -1,23 +1,21 @@
-var React = require('react');
-var Thumbnail = require('./Thumbnail.jsx');
+import React, { PureComponent } from 'react';
+import Thumbnail from './Thumbnail';
 
-var ThumbnailList = React.createClass({
-   renderListItems: function() {
-      var items = [];
-      for (var i = 0; i < this.props.listItems.length; i++) {
-         var item = this.props.listItems[i];
-         items.push(<div className="square"><Thumbnail key={item.id} src={item.icon} /></div>);
-      }
-      return items;
-   },
-   render: function() {
-      return (
-         <div className="row">
-            <h3>{this.props.title}</h3>
-            {this.renderListItems()}
-         </div>
-      );
-   }
-});
-
-module.exports = ThumbnailList;
+export default class ThumbnailList extends PureComponent {
+	renderListItems() {
+		const { listItems } = this.props;
+		return listItems.map(item => (
+			<div className="square">
+				<Thumbnail key={item.id} src={item.icon} />
+			</div>
+		));
+	}
+	render() {
+		return (
+			<div className="row">
+				<h3>{this.props.title}</h3>
+				{this.renderListItems()}
+			</div>
+		);
+	}
+}
