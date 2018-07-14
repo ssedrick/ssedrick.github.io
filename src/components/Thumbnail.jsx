@@ -1,11 +1,8 @@
-var React = require('react');
+import React from 'react';
 
-var Thumbnail = React.createClass({
-   render: function() {
-      return (
-         <i className={this.props.src + " colored square"} ></i>
-      );
-   }
-});
+const Thumbnail = ({ src }) => (
+	<i className={this.props.src + " colored square"} ></i>
+);
 
-module.exports = Thumbnail;
+export default Thumbnail;
+

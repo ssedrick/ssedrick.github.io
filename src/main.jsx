@@ -1,5 +1,6 @@
-var React = require('react');
-var ReactDOM = require('react-dom');
-var Routes = require('./Routes.jsx');
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { HashRouter as Router } from 'react-router-dom';
+import App from 'containers/App';
 
-ReactDOM.render(Routes, document.getElementById('site'));
+ReactDOM.render(<Router><App /></Router>, document.getElementById('site'));
