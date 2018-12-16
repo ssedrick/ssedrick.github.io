@@ -10,9 +10,9 @@ const PortfolioContainer = styled.div`
 	padding: 5vw;
 	alignItems: center;
 
-	${ media.handheld`
+	${media.handheld`
 		padding: 5vh;
-	` }
+	`}
 `;
 
 export default class Portfolio extends Component {
