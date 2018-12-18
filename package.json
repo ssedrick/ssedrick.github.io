@@ -1,6 +1,6 @@
 {
   "name": "personal-site",
-  "version": "0.0.1",
+  "version": "2.0.1",
   "description": "My Personal Site, also used for resume",
   "main": "index.js",
   "scripts": {
