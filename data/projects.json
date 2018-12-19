@@ -5,6 +5,7 @@
 		"title": "React Music Streaming App",
 		"url": "https://arcanestreaming.herokuapp.com/app",
 		"imageUrl": "/images/arcane.png",
+		"githubUrl": "https://github.com/ArcaneStreaming",
 		"action": "Visit",
 		"shortDescription": "A music streaming application for enjoying indie music on web and mobile.",
 		"description": [
@@ -21,6 +22,7 @@
 		"title": "An exploration in WebSockets and Docker Containers",
 		"url": "https://rpgmap.herokuapp.com",
 		"imageUrl": "/images/rpgmap.png",
+		"githubUrl": "https://github.com/ssedrick/rpgmap",
 		"action": "Explore",
 		"shortDescription": "An interactive RPG Map for visualizing a role play situtation.",
 		"description": [

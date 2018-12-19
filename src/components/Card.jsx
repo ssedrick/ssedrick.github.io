@@ -109,6 +109,9 @@ class Card extends React.PureComponent {
 								<Button href={data.url}>
 									{data.action}
 								</Button>
+								<a href={data.githubUrl}>
+									<img src="images/github.svg" alt="Github" />
+								</a>
 								<i
 									className="material-icons"
 									onClick={this.flip}
