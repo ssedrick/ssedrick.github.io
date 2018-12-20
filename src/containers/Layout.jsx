@@ -1,4 +1,5 @@
-import React, { Component } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import PictureViewer from 'components/PictureViewer';
 import NavMenu from 'components/NavMenu';
@@ -21,14 +22,16 @@ const Container = styled.div`
 	`}
 `;
 
-export default class Layout extends Component {
-	render() {
-		return (
-			<Container>
-				<PictureViewer />
-				<NavMenu />
-				{this.props.children}
-			</Container>
-		);
-	}
+export default function Layout({ children }) {
+	return (
+		<Container>
+			<PictureViewer />
+			<NavMenu />
+			{children}
+		</Container>
+	);
+}
+
+Layout.propTypes = {
+	children: PropTypes.node,
 };

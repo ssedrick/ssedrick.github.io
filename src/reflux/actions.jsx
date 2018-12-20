@@ -1,2 +1,0 @@
-const GET_SKILLS = 'GET_SKILLS';
-const GET_PROJECTS = 'GET_PROJECTS';

@@ -8,6 +8,8 @@ import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
 import Button from '@material-ui/core/Button';
 
+import { Github } from './icons';
+
 const styles = {
 	card: {
 		width: '100%',
@@ -109,9 +111,7 @@ class Card extends React.PureComponent {
 								<Button href={data.url}>
 									{data.action}
 								</Button>
-								<a href={data.githubUrl}>
-									<img src="images/github.svg" alt="Github" />
-								</a>
+								<Github url={data.githubUrl} />
 								<i
 									className="material-icons"
 									onClick={this.flip}
