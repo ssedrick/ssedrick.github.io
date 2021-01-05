@@ -19,7 +19,7 @@
   },
   "dependencies": {
     "@material-ui/core": "^1.2.3",
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "devicon": "*",
     "devicons": "^1.8.0",
     "prop-types": "^15.6.1",
