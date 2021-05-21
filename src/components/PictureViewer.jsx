@@ -49,25 +49,24 @@ const Attribution = styled.p`
 	position: absolute;
 `;
 
-export default class PictureViewer extends PureComponent {
-	getRandomInt(limit) {
-		return Math.floor(Math.random() * limit);
-	}
-	render() {
-		const quoteIndex = this.getRandomInt(quotes.length);
-		return (
-			<Column>
-				<Img src="images/profile.jpg" alt="Shem Sedrick"/>
-				<Quote>
-					{quotes[quoteIndex]}
-				</Quote>
-				<Attribution>
-					Quotes retrieved from:<br />
-					https://medium.com/statuscode/ten-inspiring-programming-quotes-7c2fe1b2e79a<br />
-					http://quotes.cat-v.org/programming/ <br />
-					http://www.junauza.com/2010/12/top-50-programming-quotes-of-all-time<br />
-				</Attribution>
-			</Column>
-		);
-	}
+const getRandomInt = (limit) => {
+	return Math.floor(Math.random() * limit);
+}
+
+export default function PictureViewer() {
+	const quoteIndex = this.getRandomInt(quotes.length);
+	return (
+		<Column>
+			<Img src="images/profile.jpg" alt="Shem Sedrick"/>
+			<Quote>
+				{quotes[quoteIndex]}
+			</Quote>
+			<Attribution>
+				Quotes retrieved from:<br />
+				https://medium.com/statuscode/ten-inspiring-programming-quotes-7c2fe1b2e79a<br />
+				http://quotes.cat-v.org/programming/ <br />
+				http://www.junauza.com/2010/12/top-50-programming-quotes-of-all-time<br />
+			</Attribution>
+		</Column>
+	);
 }

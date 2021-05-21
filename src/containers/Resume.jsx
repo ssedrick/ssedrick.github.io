@@ -9,23 +9,14 @@ const ResumeContainer = styled.iframe`
 	margin-bottom: 5vh;
 `;
 
-export default class Resume extends Component {
-	render() {
-		return (
-			<Content>
-				<h2 className="view-port-header">Resume</h2>
-				<hr />
-				<ResumeContainer src='https://onedrive.live.com/embed?cid=C9D9457F88E5A81E&resid=C9D9457F88E5A81E%214853&authkey=AM2Tbui0rLg39i0&em=2&wdStartOn=1'>
-					This is an embedded
-					<a target='_blank' href='https://office.com'>
-						Microsoft Office
-					</a>
-					document, powered by 
-					<a target='_blank' href='https://office.com/webapps'>
-						Office Online
-					</a>.
-				</ResumeContainer>
-			</Content>
-		);
-	}
-};
+export default function Resume() {
+	return (
+		<Content>
+			<h2 className="view-port-header">Resume</h2>
+			<hr />
+       <ResumeContainer src='https://docs.google.com/document/d/e/2PACX-1vS81-dMBK-HPbJZi1dF4ctK8MVmjJS-TjAqNP7r4aKINgEdjh3I9FjVtSBFjS-eJfS_GIYbqdjS20eS/pub?embedded=true'>
+				This is an embedded Google Doc
+			</ResumeContainer>
+		</Content>
+	);
+}

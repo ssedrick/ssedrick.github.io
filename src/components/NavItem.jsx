@@ -24,31 +24,22 @@ const Icon = styled.i`
 `;
 
 
-class NavItem extends PureComponent {
-	static propTypes = {
-		url: string,
-		name: string,
-		icon: string,
-		location: object.isRequired,
-	}
-	render() {
-		const { url, name, icon, location } = this.props;
-		const isSelected = location.pathname === url;
-		return (
-			<Link to={url}>
-				<Tooltip id='home tooltip' title={name}>
-					<Background isSelected={isSelected}>
-						<Icon
-							isSelected={isSelected}
-							className="material-icons"
-						>
-							{icon}
-						</Icon>
-					</Background>
-				</Tooltip>
-			</Link>
-		);
-	}
+const NavItem = ({ url, name, icon, location }) => {
+	const isSelected = location.pathname === url;
+	return (
+		<Link to={url}>
+			<Tooltip id='home tooltip' title={name}>
+				<Background isSelected={isSelected}>
+					<Icon
+						isSelected={isSelected}
+						className="material-icons"
+ 					>
+						{icon}
+					</Icon>
+				</Background>
+			</Tooltip>
+		</Link>
+	);
 }
 
 export default withRouter(NavItem);

@@ -10,18 +10,16 @@ const IconRow = styled.div`
 	align-items: center;
 `;
 
-export default class Home extends Component {
-	render() {
-		return (
-			<Content>
-				<h3>Hi, I'm Shem Sedrick</h3>
-				<h5>I'm a husband, father, and Software Engineer</h5>
-				<IconRow>
-					<LinkedIn url="https://www.linkedin.com/in/shemsedrick" />
-					<Github url="https://github.com/ssedrick" />
-				</IconRow>
-			</Content>
-		);
-	}
+export default function Home() {
+	return (
+		<Content>
+			<h3>Hi, I'm Shem Sedrick</h3>
+			<h5>I'm a husband, father, and Software Engineer</h5>
+			<IconRow>
+				<LinkedIn url="https://www.linkedin.com/in/shemsedrick" />
+				<Github url="https://github.com/ssedrick" />
+			</IconRow>
+		</Content>
+	);
 }
 

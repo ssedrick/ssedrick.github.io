@@ -9,20 +9,17 @@ const Container = styled.div`
 	justify-content: space-around;
 `;
 
-export default class CardList extends PureComponent {
-	renderListItems() {
-		const { listItems } = this.props;
-		return listItems.map(item => (<Card key={item.id} data={item} />));
-	}
+const renderListItems = (items) => {
+	return items.map(item => (<Card key={item.id} data={item} />));
+}
 
-	render() {
-		return (
-			<div>
-				<h3 className="list-header">{this.props.title}</h3>
-				<Container>
-					{this.renderListItems()}
-				</Container>
-			</div>
-		);
-	}
+export default function CardList({ listItems }) {
+	return (
+		<div>
+			<h3 className="list-header">{this.props.title}</h3>
+			<Container>
+				{renderListItems(listItems)}
+			</Container>
+		</div>
+	);
 }

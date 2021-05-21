@@ -77,74 +77,64 @@ const Back = styled.div`
 	transform: rotateY(180deg);
 `;
 
-class Card extends React.PureComponent {
-	state = {
-		isFlipped: false,
-	}
+const Card = ({ data, classes }) => {
+	const [isFlipped, flip] = useState(false);
 
-	flip = () => {
-		this.setState((state) => ({ isFlipped: !state.isFlipped }));
-	}
-
-	render () {
-		const { data, classes } = this.props;
-		const { isFlipped } = this.state;
-		return (
-			<FlipContainer>
-				<Flipper isFlipped={isFlipped}>
-					<Front>
-						<MUICard className={classes.card}>
-							<CardMedia
-								className={classes.media}
-								image={data.imageUrl}
-								title={data.title}
-							/>
-							<CardHeader
-								title={data.name}
-							/>
-							<CardContent>
-								{data.shortDescription}
-							</CardContent>
-							<CardActions
-								className={classes.actions}
+	return (
+		<FlipContainer>
+			<Flipper isFlipped={isFlipped}>
+				<Front>
+					<MUICard className={classes.card}>
+						<CardMedia
+							className={classes.media}
+							image={data.imageUrl}
+							title={data.title}
+						/>
+						<CardHeader
+							title={data.name}
+						/>
+						<CardContent>
+							{data.shortDescription}
+						</CardContent>
+						<CardActions
+							className={classes.actions}
+						>
+							<Button href={data.url}>
+								{data.action}
+							</Button>
+							<Github url={data.githubUrl} />
+							<i
+								className="material-icons"
+								onClick={this.flip}
+								style={styles.icon}
 							>
-								<Button href={data.url}>
-									{data.action}
-								</Button>
-								<Github url={data.githubUrl} />
-								<i
-									className="material-icons"
-									onClick={this.flip}
-									style={styles.icon}
-								>
-									flip_to_back
-								</i>
-							</CardActions>
-						</MUICard>
-					</Front>
-					<Back>
-						<MUICard className={classes.card}>
-							<CardHeader
-								title={data.name}
-							/>
-							<CardContent className={classes.content}>
-								{data.description.map(line => (<p>{line}</p>))}
-							</CardContent>
-							<CardActions>
-								<i
-									className="material-icons"
-									onClick={this.flip}
-									style={styles.icon}
-								>
-									flip_to_front
-								</i>
-							</CardActions>
-						</MUICard>
-					</Back>
-				</Flipper>
-			</FlipContainer>
-		);
-	}
+								flip_to_back
+							</i>
+						</CardActions>
+					</MUICard>
+				</Front>
+				<Back>
+					<MUICard className={classes.card}>
+						<CardHeader
+							title={data.name}
+						/>
+						<CardContent className={classes.content}>
+							{data.description.map(line => (<p>{line}</p>))}
+						</CardContent>
+						<CardActions>
+							<i
+								className="material-icons"
+								onClick={this.flip}
+								style={styles.icon}
+							>
+								flip_to_front
+							</i>
+						</CardActions>
+					</MUICard>
+				</Back>
+			</Flipper>
+		</FlipContainer>
+	);
 }
 
 export default withStyles(styles)(Card);

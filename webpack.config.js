@@ -13,8 +13,7 @@ module.exports = {
 				exclude: [ /node_modules/ ],
 				loader: "babel-loader",
 				options: {
-					presets: [ "env", "react" ],
-					plugins: [["transform-class-properties", { "spec": true }]]
+					presets: [ "@babel/env", "@babel/react" ],
 				}
 			}
 		]

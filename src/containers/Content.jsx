@@ -5,7 +5,7 @@ export default styled.div`
 	flex: 2;
 	height: 85vh;
 	width: 100%;
-	background-color: ${colors.white.white}
+	background-color: ${colors.white.white};
 	margin: 5vh;
 	margin-left: 0;
 	display: flex;

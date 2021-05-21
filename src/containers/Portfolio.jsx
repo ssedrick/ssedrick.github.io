@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 import styled from 'styled-components';
-import { media } from 'utils';
-import Content from 'containers/Content';
-import { ScrollY } from 'containers/Overflow';
-import CardList from 'components/CardList';
+import { media } from '../utils';
+import Content from './Content';
+import { ScrollY } from './Overflow';
+import CardList from '../components/CardList';
 import projects from '../../data/projects.json';
 
 const PortfolioContainer = styled.div`
@@ -15,18 +15,16 @@ const PortfolioContainer = styled.div`
 	`}
 `;
 
-export default class Portfolio extends Component {
-	render() {
-		return (
-			<Content>
-				<ScrollY>
-					<PortfolioContainer>
-						<h2>Portfolio</h2>
-						<hr />
-						<CardList listItems={projects} title='Projects' />
-					</PortfolioContainer>
-				</ScrollY>
-			</Content>
-		);
-	}
-};
+export default function Portfolio() {
+	return (
+		<Content>
+			<ScrollY>
+				<PortfolioContainer>
+					<h2>Portfolio</h2>
+					<hr />
+					<CardList listItems={projects} title='Projects' />
+				</PortfolioContainer>
+			</ScrollY>
+		</Content>
+	);
+}
